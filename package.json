@@ -20,6 +20,8 @@
   "homepage": "https://github.com/ajuraI/survive-tg-bot#readme",
   "dependencies": {
     "node-telegram-bot-api": "^0.58.0",
-    "nodemon": "^2.0.19"
+    "nodemon": "^2.0.19",
+    "sequelize": "^6.21.3",
+    "sqlite3": "^5.0.11"
   }
 }

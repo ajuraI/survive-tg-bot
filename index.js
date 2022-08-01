@@ -1,14 +1,15 @@
-const TelegramApi = require('node-telegram-bot-api');
-
-const token = '5446314437:AAG37WfLuGgnN9js4_ynjUsT-FS7rMNC_Wk';
-
-const bot = new TelegramApi(token, { polling: true });
+const db = require("./src/db-init");
+const bot = require("./src/bot-init");
+const { CMD_START, CMD_RANDOM_ALL } = require('./src/commands');
 
 bot.on('message', ({ text, chat: { username, id: chatId }}) => {
-    if (text === '/start') {
-        bot.sendMessage(chatId, `Hello, ${username}! \nType /random to get random number from 1 to 100`);
+    if (text === CMD_START) {
+        bot.sendMessage(
+            chatId, 
+            `Привет, ${username}! \nДля получения случайных карточек введи команду ${RANDOM_ALL}`
+        );
     }
-    if (text === '/random') {
+    if (text === CMD_RANDOM_ALL) {
         bot.sendMessage(chatId, Math.floor(Math.random()*100));
     }
 });
