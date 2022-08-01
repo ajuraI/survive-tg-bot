@@ -1,8 +1,9 @@
-const bot = require("./src/initialization/bot-init");
-const baseData = require("./src/initialization/db-init");
+const bot = require("./src/__data__/bot-init");
 const switcher = require('./src/switcher');
+const { initDB } = require("./src/__data__/db-init");
+
+initDB();
 
 bot.on('message', (message) => {
-    const data = {...baseData};
-    switcher(data, message)
+    switcher(message);
 });
