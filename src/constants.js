@@ -1,23 +1,23 @@
 const commands = {
     CMD_START: "/start",
-    CMD_RANDOM_ALL: "/allrandom",
+    CMD_RANDOM: "/random",
 };
 
 const VALUE = "Значения";
 
 const tables = {
-    bio: "Биология",
-    big_bag: "Большой багаж",
-    age: "Возрастные стадии",
-    add_info: "Доп. Информация",
-    health: "Здоровье",
-    small_bag: "Малый багаж",
     profession: "Профессия",
-    experience: "Стаж работы*",
-    disease_stage: "Степень заболевания",
-    hobby_level: "Уровень владением хобби*",
-    phobic: "Фобия",
+    experience: "Стаж работы",
+    bio: "Биология",
+    age: "Возрастные стадии*",
     hobby: "Хобби",
+    hobby_level: "Уровень владением хобби*",
+    health: "Здоровье",
+    disease_stage: "Степень заболевания*",
+    phobic: "Фобия",
+    add_info: "Доп. Информация",
+    small_bag: "Малый багаж",
+    big_bag: "Большой багаж",
 };
 
 module.exports = {
