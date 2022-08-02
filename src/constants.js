@@ -3,6 +3,7 @@ const commands = {
     CMD_RANDOM: "/random",
     CMD_CLEAR: "/clear",
     CMD_CURRENT: "/current",
+    CMD_UPDATE: "/update",
 };
 
 const VALUE = "Значения";

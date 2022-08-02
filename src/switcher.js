@@ -3,13 +3,15 @@ const {
     startAction, 
     randomAction, 
     clearAction, 
-    currentAction 
+    currentAction,
+    updateDataAction,
 } = require('./actions');
 const { 
     CMD_START, 
     CMD_RANDOM, 
     CMD_CURRENT,
     CMD_CLEAR,
+    CMD_UPDATE,
 } = commands;
 
 module.exports = (message) => {
@@ -25,6 +27,9 @@ module.exports = (message) => {
             break;
         case CMD_CURRENT:
             currentAction(message);
+            break;
+        case CMD_UPDATE:
+            updateDataAction(message);
             break;
         default: {
             break;

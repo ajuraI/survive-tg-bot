@@ -2,6 +2,7 @@ const bot = require("./__data__/bot-init");
 const { commands } = require('./constants');
 const stateManager = require('./__data__/state');
 const { getCard, getCardMessage } = require('./utils');
+const { initDB } = require("./__data__/db-init");
 const { state } = stateManager;
 const { CMD_RANDOM } = commands;
 
@@ -36,4 +37,9 @@ exports.currentAction = ({ chat }) => {
     } else {
         bot.sendMessage(chat.id, `На данный момент карточек нет`);
     }
+};
+
+exports.updateDataAction = ({ chat }) => {
+    initDB();
+    bot.sendMessage(chat.id, `База данных обновлена`);
 };

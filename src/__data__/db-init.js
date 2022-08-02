@@ -1,9 +1,9 @@
 const sqlite3 = require('sqlite3').verbose();
 const { tables, VALUE } = require('../constants');
 const { state } = require('./state');
-const db = new sqlite3.Database('surviveDB');
 
 const initDB = () => {
+    const db = new sqlite3.Database('surviveDB');
     db.serialize(() => {
         for (let key in tables) {
             const query = `SELECT * FROM \`${tables[key]}\``
