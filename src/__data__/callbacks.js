@@ -1,6 +1,6 @@
 const { state } = require("./state");
 const bot = require("./bot-init");
-const { findCardByCardId, getCardMessage, createButtons } = require("../utils");
+const { findCardByCardId, getCardMessage, createButtons, getCatForCard } = require("../utils");
 
 module.exports = {
     reroll: (msg, cardId) => {
@@ -15,8 +15,17 @@ module.exports = {
     },
     rerollCat: (msg, data) => {
         const [ cardId, catId] = data.split(".");
-        // const card = findCardByCardId(cardId);
-        // const category = Object.keys(card)[Number(catId)];
-        // card[category] = getCatForCard(getCatForCard);
+        const card = findCardByCardId(cardId);
+        const category = Object.keys(card)[Number(catId)];
+        card[category] = getCatForCard(category);
+        const cardText = getCardMessage(card);
+        const options = {
+            parse_node: "HTML",
+            chat_id: msg.message.chat.id,
+            message_id: msg.message.message_id,
+            disable_web_page_preview: true,
+            ...createButtons(cardId),
+        }
+        bot.editMessageText(cardText, options);
     }
 }

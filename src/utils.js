@@ -48,7 +48,7 @@ exports.getCardMessage = (card) => {
     let message = "";
     for (let key in card) {
         if (key !== "id") {
-            message += `${tables[key]}: ${card[key]} \n`
+            message += `**${tables[key]}**: ${card[key]} \n`
         }
     }
     return message;
