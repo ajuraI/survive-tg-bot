@@ -5,7 +5,7 @@ const {
     clearAction, 
     currentAction,
     updateDataAction,
-} = require('./actions');
+} = require('./__data__/actions');
 const { 
     CMD_START, 
     CMD_RANDOM, 
