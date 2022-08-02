@@ -1,6 +1,8 @@
 const commands = {
     CMD_START: "/start",
     CMD_RANDOM: "/random",
+    CMD_CLEAR: "/clear",
+    CMD_CURRENT: "/current",
 };
 
 const VALUE = "Значения";
