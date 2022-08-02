@@ -10,11 +10,10 @@ bot.on('message', msg => {
 });
 
 bot.on('callback_query', msg => {
-    const callbackData = msg.message.reply_markup.inline_keyboard[0][0].callback_data;
-    if (callbackData) {
-        const [ callbackName, id ] = callbackData.split("::");
-        if (callbacks[callbackName]) {
-            callbacks[callbackName](id);
+    if (msg.data) {
+        const [ name, data ] = msg.data.split("::");
+        if (callbacks[name]) {
+            callbacks[name](msg, data);
         }
     }
 });

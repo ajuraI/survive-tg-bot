@@ -5,7 +5,20 @@ const getRandomIndex = (max) => {
     return Math.floor(Math.random() * max);
 };
 
-exports.createButton = (cardId) => {
+exports.createButtons = (cardId, type) => {
+    if (type === "chooseCat") {
+        const catButtons = Object.keys(tables).map((cat, index) => {
+            return [{
+                text: tables[cat],
+                callback_data: `rerollCat::${cardId}.${index+1}`,
+            }];
+        })
+        return {
+            reply_markup: {
+                inline_keyboard: catButtons
+            }
+        }
+    }
     return {
         reply_markup: {
             inline_keyboard: [
@@ -18,13 +31,15 @@ exports.createButton = (cardId) => {
     }
 };
 
+exports.getCatForCard = getCatForCard = (category) => {
+    const catValues = state.data[category];
+    return catValues[getRandomIndex(catValues.length)];
+};
+
 exports.getCard = (id) => {
-    let card = {
-        id: id,
-    };
+    let card = { id };
     for (let key in tables) {
-        const category = state.data[key];
-        card[key] = category[getRandomIndex(category.length)];
+        card[key] = getCatForCard(key);
     };
     return card;
 }
@@ -37,4 +52,8 @@ exports.getCardMessage = (card) => {
         }
     }
     return message;
+};
+
+exports.findCardByCardId = (cardId) => {
+    return state.currentCards.find(card => card.id === Number(cardId));
 };

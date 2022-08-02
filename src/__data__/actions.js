@@ -1,7 +1,7 @@
 const bot = require("./bot-init");
 const { commands } = require("../constants");
 const stateManager = require("./state");
-const { getCard, getCardMessage, createButton } = require("../utils");
+const { getCard, getCardMessage, createButtons } = require("../utils");
 const { initDB } = require("./db-init");
 const { state } = stateManager;
 const { CMD_RANDOM } = commands;
@@ -19,7 +19,7 @@ exports.randomAction = ({ chat }) => {
         bot.sendMessage(chatId, "Ошибка получения данных, попробуйте позже"); 
     } else {
         let card = getCard(state.currentCards.length + 1);
-        const button = createButton(card.id);
+        const button = createButtons(card.id);
         state.currentCards.push(card);
         state.professions.push(card.profession);
         let message = getCardMessage(card);
