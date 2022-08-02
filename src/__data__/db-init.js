@@ -12,7 +12,7 @@ const initDB = () => {
                     acc.push(cur[VALUE])
                     return acc;
                 }, []);
-                state.data = {...state.baseData};
+                state.data[key] = state.baseData[key];
             })
         }
     });
