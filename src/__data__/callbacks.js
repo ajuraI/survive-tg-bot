@@ -19,7 +19,7 @@ module.exports = {
         if (cardId !== "null") {
             const card = findCardByCardId(cardId);
             const category = Object.keys(card)[Number(catId)];
-            card[category] = getCatForCard(category, !tables[category].includes("*"));
+            card[category] = getCatForCard(category, !category.includes("*"));
             const cardText = getCardMessage(card);
             const options = {
                 parse_mode: "HTML",

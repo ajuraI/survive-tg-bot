@@ -85,7 +85,7 @@ exports.getCatForCard = getCatForCard = (category, unique = false) => {
 exports.getCard = (id) => {
     let card = { id };
     for (let key in tables) {
-        card[key] = getCatForCard(key, !tables[key].includes("*"));
+        card[key] = getCatForCard(key, !key.includes("*"));
     };
     return card;
 }

@@ -3,10 +3,10 @@ const { tables, VALUE } = require('../constants');
 const { state } = require('./state');
 
 const initDB = () => {
-    const db = new sqlite3.Database('surviveDB');
+    const db = new sqlite3.Database('surviveDB.db');
     db.serialize(() => {
         for (let key in tables) {
-            const query = `SELECT * FROM \`${tables[key]}\``
+            const query = `SELECT * FROM \`${key}\``
             db.all(query, (err, rows) => {
                 state.baseData[key] = rows.reduce((acc, cur) => {
                     acc.push(cur[VALUE])

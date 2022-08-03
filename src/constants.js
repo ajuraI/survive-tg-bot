@@ -11,13 +11,13 @@ const VALUE = "Значения";
 
 const tables = {
     profession: "Профессия",
-    experience: "Experience*",
-    bio: "Bio*",
-    age: "Возрастные стадии*",
+    "experience*": "Стаж работы",
+    "bio*": "Биология",
+    "age*": "Возрастные стадии",
     hobby: "Хобби",
-    hobby_level: "Уровень владением хобби*",
+    "hobby_level*": "Уровень владением хобби",
     health: "Здоровье",
-    disease_stage: "Степень заболевания*",
+    "disease_stage*": "Степень заболевания",
     phobic: "Фобия",
     add_info: "Доп. Информация",
     small_bag: "Малый багаж",
