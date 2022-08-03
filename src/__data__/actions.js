@@ -1,7 +1,7 @@
 const bot = require("./bot-init");
 const { commands } = require("../constants");
 const stateManager = require("./state");
-const { getCard, getCardMessage, createButtons } = require("../utils");
+const { getCard, createButtons, viewCard } = require("../utils");
 const { initDB } = require("./db-init");
 const { state } = stateManager;
 const { CMD_RANDOM } = commands;
@@ -16,14 +16,11 @@ exports.startAction = ({ chat }) => {
 exports.randomAction = ({ chat }) => {
     const isDataEmpty = Object.keys(state.data).length === 0;
     if (isDataEmpty) {
-        bot.sendMessage(chatId, "Ошибка получения данных, попробуйте позже"); 
+        bot.sendMessage(chat.id, "Ошибка получения данных, попробуйте позже"); 
     } else {
         let card = getCard(state.currentCards.length + 1);
-        const button = createButtons(card.id);
+        viewCard(chat.id, card);
         state.currentCards.push(card);
-        state.professions.push(card.profession);
-        let message = getCardMessage(card);
-        bot.sendMessage(chat.id, message, button);
     }
 }
 
@@ -33,8 +30,9 @@ exports.clearAction = ({ chat }) => {
 };
 
 exports.currentAction = ({ chat }) => {
-    if (state.professions.length > 0) {
-        bot.sendMessage(chat.id, `Текущие карточки: ${state.professions}`);
+    if (state.currentCards.length > 0) {
+        const options = createButtons("current");
+        bot.sendMessage(chat.id, `Текущие карточки:`, options);
     } else {
         bot.sendMessage(chat.id, `На данный момент карточек нет`);
     }
