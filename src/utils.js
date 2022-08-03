@@ -2,20 +2,21 @@ const { state } = require('./__data__/state');
 const { tables } = require('./constants');
 const bot = require("./__data__/bot-init");
 
-const getRandomIndex = (max) => {
-    return Math.floor(Math.random() * max);
+const getRandomIndex = (max, min = 0) => {
+    return Math.floor(min + Math.random() * (max-min));
 };
 
 exports.createButtons = createButtons = (type, cardId) => {
     if (type === "chooseCat") {
         let i = 3;
         const catButtons = Object.keys(tables).reduce((acc, cat, index) => {
+            const callbackData = `rerollCat::${cardId}.${index + 1}`
             const btn = {
                 text: tables[cat],
-                callback_data: `rerollCat::${cardId}.${index+1}`,
+                callback_data: callbackData,
             };
             if (i > 0) {
-                acc[acc.length-1].push(btn);
+                acc[acc.length - 1].push(btn);
                 i--;
             } else {
                 acc.push([btn]);
@@ -37,7 +38,7 @@ exports.createButtons = createButtons = (type, cardId) => {
                 callback_data: `viewCard::${card.id}`,
             };
             if (i > 0) {
-                acc[acc.length-1].push(btn);
+                acc[acc.length - 1].push(btn);
                 i--;
             } else {
                 acc.push([btn]);
@@ -63,15 +64,28 @@ exports.createButtons = createButtons = (type, cardId) => {
     }
 };
 
-exports.getCatForCard = getCatForCard = (category) => {
+exports.getCatForCard = getCatForCard = (category, unique = false) => {
     const catValues = state.data[category];
-    return catValues[getRandomIndex(catValues.length)];
+    const index = getRandomIndex(catValues.length);
+    let value = catValues[index];
+    if (value.includes("[") && value.includes("]")) {
+        const start = value.indexOf("[");
+        const end = value.indexOf("]");
+        const interval = value.slice(start+1, end).split("-");
+        const randomNumber = getRandomIndex(Number(interval[1]) + 1, Number(interval[0]));
+        value = [value.slice(0, start), randomNumber, value.slice(end + 1, value.length)].join("");
+    }
+    if (unique) {
+        /** Убираем полученное значение из данных  */
+        catValues.splice(index, 1);
+    }
+    return value;
 };
 
 exports.getCard = (id) => {
     let card = { id };
     for (let key in tables) {
-        card[key] = getCatForCard(key);
+        card[key] = getCatForCard(key, !tables[key].includes("*"));
     };
     return card;
 }

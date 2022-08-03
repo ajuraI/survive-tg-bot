@@ -4,14 +4,15 @@ const commands = {
     CMD_CLEAR: "/clear",
     CMD_CURRENT: "/current",
     CMD_UPDATE: "/update",
+    CMD_RANDOMCAT: "/randomcat",
 };
 
 const VALUE = "Значения";
 
 const tables = {
     profession: "Профессия",
-    experience: "Стаж работы",
-    bio: "Биология",
+    experience: "Experience*",
+    bio: "Bio*",
     age: "Возрастные стадии*",
     hobby: "Хобби",
     hobby_level: "Уровень владением хобби*",

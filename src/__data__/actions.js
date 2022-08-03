@@ -13,6 +13,15 @@ exports.startAction = ({ chat }) => {
     );
 }
 
+exports.randomCatAction = ({ chat }) => {
+    const options = createButtons("chooseCat", null);
+    bot.sendMessage(
+        chat.id, 
+        "Выбери характеристику из списка:",
+        options,
+    );
+}
+
 exports.randomAction = ({ chat }) => {
     const isDataEmpty = Object.keys(state.data).length === 0;
     if (isDataEmpty) {

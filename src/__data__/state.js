@@ -1,3 +1,5 @@
+const cloneDeep = require('lodash/cloneDeep');
+
 module.exports = {
     state: {
         baseData: {},
@@ -5,7 +7,7 @@ module.exports = {
         currentCards: [],
     },
     clearState: function () {
-        this.state.data = {...this.state.baseData};
+        this.state.data = cloneDeep(this.state.baseData);
         this.state.currentCards = [];
     }
 }
