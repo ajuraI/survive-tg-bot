@@ -5,6 +5,7 @@ const commands = {
     CMD_CURRENT: "/current",
     CMD_UPDATE: "/update",
     CMD_RANDOMCAT: "/randomcat",
+    CMD_SPECIAL: "/special",
 };
 
 const VALUE = "Значения";

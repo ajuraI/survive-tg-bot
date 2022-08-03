@@ -1,7 +1,7 @@
 const bot = require("./bot-init");
 const { commands } = require("../constants");
 const stateManager = require("./state");
-const { getCard, createButtons, viewCard } = require("../utils");
+const { getCard, createButtons, viewCard, getRandomIndex } = require("../utils");
 const { initDB } = require("./db-init");
 const { state } = stateManager;
 const { CMD_RANDOM } = commands;
@@ -21,6 +21,21 @@ exports.randomCatAction = ({ chat }) => {
         options,
     );
 }
+
+exports.specialAction = ({ message_id, chat }) => {
+    const options = {
+        parse_mode: "HTML",
+        chat_id: chat.id,
+        message_id: message_id,
+        disable_web_page_preview: true,
+        ...createButtons("special"),
+    }
+    bot.sendMessage(
+        chat.id, 
+        `<b>Спец. условие</b> - ${state.specialConditions[getRandomIndex(state.specialConditions.length)]}`,
+        options
+    );
+};
 
 exports.randomAction = ({ chat }) => {
     const isDataEmpty = Object.keys(state.data).length === 0;

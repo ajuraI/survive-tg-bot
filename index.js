@@ -16,4 +16,5 @@ bot.on('callback_query', msg => {
             callbacks[name](msg, data);
         }
     }
+    bot.answerCallbackQuery(msg.id);
 });

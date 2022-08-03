@@ -2,12 +2,23 @@ const { state } = require('./__data__/state');
 const { tables } = require('./constants');
 const bot = require("./__data__/bot-init");
 
-const getRandomIndex = (max, min = 0) => {
+exports.getRandomIndex = getRandomIndex = (max, min = 0) => {
     return Math.floor(min + Math.random() * (max-min));
 };
 
 exports.createButtons = createButtons = (type, cardId) => {
-    if (type === "chooseCat") {
+    if (type === "special") {
+        return {
+            reply_markup: {
+                inline_keyboard: [
+                    [{
+                        text: "Еще раз",
+                        callback_data: `special`,
+                    }]
+                ]
+            }
+        }
+    } else if (type === "chooseCat") {
         let i = 3;
         const catButtons = Object.keys(tables).reduce((acc, cat, index) => {
             const callbackData = `rerollCat::${cardId}.${index + 1}`

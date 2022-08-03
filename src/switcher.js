@@ -6,6 +6,7 @@ const {
     currentAction,
     updateDataAction,
     randomCatAction,
+    specialAction,
 } = require('./__data__/actions');
 const { 
     CMD_START, 
@@ -14,6 +15,7 @@ const {
     CMD_CLEAR,
     CMD_UPDATE,
     CMD_RANDOMCAT,
+    CMD_SPECIAL,
 } = commands;
 
 module.exports = (message) => {
@@ -35,6 +37,9 @@ module.exports = (message) => {
             break;
         case CMD_RANDOMCAT:
             randomCatAction(message);
+            break;
+        case CMD_SPECIAL:
+            specialAction(message);
             break;
         default: {
             break;

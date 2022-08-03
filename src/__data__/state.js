@@ -3,6 +3,7 @@ const cloneDeep = require('lodash/cloneDeep');
 module.exports = {
     state: {
         baseData: {},
+        specialConditions: [],
         data: {},
         currentCards: [],
     },
